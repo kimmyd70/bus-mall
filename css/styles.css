@@ -1,8 +1,35 @@
 /* font-family: 'Montserrat', sans-serif; font-family: 'Libre Baskerville', serif */
 
+
+header{
+    display: inline;
+}
+
+header img {
+    float: left;
+    margin-right: 30px;
+}
+
+body{
+    margin: 50px;
+    background-image: url ("img/asphalt.jpg");
+    background-repeat: repeat;
+
+}
+
 h1 {
     font-family:'Libre Baskerville', serif;
-    color: darkgoldenrod;
+    color: orange;
+    font-size: 36px;
+    font-weight: bolder;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+
 }
 
 .small {
