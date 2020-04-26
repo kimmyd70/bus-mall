@@ -83,7 +83,8 @@ main {
 h3 {
     font-family: 'Montserrat', sans-serif;
     font-size: 18px;
-    color: #000000;
+    font-weight: 600;
+    color: #005810;
     margin: 60px 0px;
     text-align: center;
     line-height: 1.5;
