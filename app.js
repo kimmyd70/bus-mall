@@ -24,7 +24,7 @@ function productAvailable (name, photo){
 //loop 25....use global variable for counter to easily replace
 //remove listener
 
-//US #4 view a report of results
+//US #4 view a report of results AFTER 25 votes
 // Constructor property: shown to customer
 //Display: productName, clickCount, showCount--in popular order--table?
 
