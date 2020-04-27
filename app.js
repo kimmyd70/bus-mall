@@ -1,18 +1,39 @@
 'use strict';
 
+//Global Variables
+var products = [];
+
+//DOM links
+
+var picOneEl = document.getElementById ('product-pic-one');
+var picTwoEl = document.getElementById ('product-pic-two');
+var picThreeEl = document.getElementById ('product-pic-three');
+
+
 //US #1 Display 3 unique (random) products
 //Create constructor properties: product-name, image file path
 
-function productAvailable (name, photo){
+function ProductAvailable (name, photo){
   this.productName = name;
   this.source = photo;
 
   this.clickCount = 0;
   this.showCount = 0;
+
+  products.push (this);
 }
+
+//Instantiate products
+new ProductAvailable('bag')
 
 
 //Randomize and show 3 products (no doubles)
+
+function randomIndex (max){
+  return Math.floor(Math.random() * max);
+}
+
+
 //render side-by-side
 //Attach event listener
 //User pics favorite with click, repeat to var rounds = 25
