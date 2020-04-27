@@ -4,13 +4,13 @@ Logo Green = #005810 font-family: Buena Park JF, regular*/
 .container{
     margin: 30px;
     background-color: rgb(206, 206, 206) ;
-    height: 1000px;
     border: 4px solid darkgray;
     border-radius: 1%;
 }
 
 .small {
-    width: 275px;
+    max-width: 275px;
+    max-height: 250px;
     margin: 30px 15px;
     border: 2px solid #005810;
     border-radius: 3%;
@@ -48,7 +48,7 @@ h1 {
     font-family: 'Libre Baskerville', serif;
     font-weight: 700;
     color:black;
-    font-size: 45px;
+    font-size: 36px;
     margin-top: -150px;
     line-height: 1.5;
     
@@ -77,8 +77,42 @@ hr {
     margin: -80px 0px 0px 225px;
 }
 
-main {
+#product-display {
     margin-top: 100px;
+    text-align: center;
+    animation-duration: 1s;
+    animation-name: slidein;
+}
+
+@keyframes slidein {
+    from {
+        margin-left: 100%;
+        width: 300%; 
+    }
+    
+    to {
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+/* #click-boxes button {
+    margin: 0px 100px 0px 130px;
+    text-align:center;
+}
+ */
+#procuct-display:hover {
+    background-color: #005810;
+    color: white;
+}
+
+#text-explain{
+    text-align: center;
+}
+
+#text-explain hr, footer hr {
+    margin: 0px 0px 0px 80px;
+    width:80%
 }
 
 h3 {
@@ -91,42 +125,12 @@ h3 {
     line-height: 1.5;
 }
 
-#product-display {
-    text-align: center;
-}
 
-#text-explain{
-   text-align: center;
-}
 
-#text-explain button {
-    margin: 0px 80px;
-    text-align:center;
-}
-
-#text-explain button:hover {
-    background-color: #005810;
-    color: white;
-}
-
-#text-explain hr {
-    margin: 0px 0px 0px 80px;
-    width:80%
-}
-
-#product-display {
-    animation-duration: 1s;
-    animation-name: slidein;
+  footer {
+      margin: 50px 0px 10px;
   }
-  
-  @keyframes slidein {
-    from {
-      margin-left: 100%;
-      width: 300%; 
-    }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
+
+  footer p {
+      padding: 20px 100px;
   }
