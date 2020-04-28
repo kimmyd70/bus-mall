@@ -2,7 +2,7 @@
 
 //Global Variables
 var products = [];
-var votingRounds = 25; //control how long user clicks to vote
+var votingRounds = 5; //control how long user clicks to vote
 
 //DOM links
 
@@ -61,30 +61,36 @@ function randomIndex (max){
 // repeat for global var votingRounds = # times
 
 function display(){
-  while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
-    var index1 = randomIndex(products.length);
-    var index2 = randomIndex(products.length);
-    var index3 = randomIndex(products.length);
+  if (votingRounds > 0){
+    while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
+      var index1 = randomIndex(products.length);
+      var index2 = randomIndex(products.length);
+      var index3 = randomIndex(products.length);
+    }
+
+    //set images to be displayed
+    picOneEl.src = products[index1].src;
+    picTwoEl.src = products[index2].src;
+    picThreeEl.src = products[index3].src;
+
+    //set titles and alts
+    picOneEl.title = products[index1].name;
+    picTwoEl.title = products[index2].name;
+    picThreeEl.title = products[index3].name;
+
+    picOneEl.alt = products[index1].name;
+    picTwoEl.alt = products[index2].name;
+    picThreeEl.alt = products[index3].name;
+
+    products[index1].showCount++;
+    products[index2].showCount++;
+    products[index3].showCount++;
+
+
   }
-
-  //set images to be displayed
-  picOneEl.src = products[index1].src;
-  picTwoEl.src = products[index2].src;
-  picThreeEl.src = products[index3].src;
-
-  //set titles and alts
-  picOneEl.title = products[index1].name;
-  picTwoEl.title = products[index2].name;
-  picThreeEl.title = products[index3].name;
-
-  picOneEl.alt = products[index1].name;
-  picTwoEl.alt = products[index2].name;
-  picThreeEl.alt = products[index3].name;
-
-  products[index1].showCount++;
-  products[index2].showCount++;
-  products[index3].showCount++;
-
+  else {
+    end();
+  }
 }
 
 //US #2 Track selections made to determine most picked
@@ -97,6 +103,7 @@ function handleChoice(event){
     }
   }
   display();
+  votingRounds--;
 }
 
 
@@ -109,7 +116,6 @@ function start (){
   picThreeEl.src = './assets/bus-mall-logo.png';
 
   sectionEl.addEventListener('click', handleChoice);
-  display();
 }
 
 function end (){
