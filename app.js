@@ -2,7 +2,7 @@
 
 //Global Variables
 var products = [];
-var votingRounds = 5;
+var votingRounds = 25; //control how long user clicks to vote
 
 //DOM links
 
@@ -16,12 +16,14 @@ var sectionEl = document.getElementById('product-display');
 //US #1 Display 3 unique (random) products
 //Create constructor properties: product-name, image file path
 
-function ProductAvailable (name, src){
+function ProductAvailable (name, src, clickCount = 0, showCount = 0){
   this.name = name;
   this.src = src;
+  this.alt = name;
+  this.title = name;
 
-  this.clickCount = 0;
-  this.showCount = 0;
+  this.clickCount = clickCount;
+  this.showCount = showCount;
 
   products.push(this);
 }
@@ -56,9 +58,9 @@ function randomIndex (max){
 }
 
 // ...and show 3 products (no doubles) side by side; update show Count
+// repeat for global var votingRounds = # times
 
 function display(){
-
   while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
     var index1 = randomIndex(products.length);
     var index2 = randomIndex(products.length);
@@ -70,20 +72,25 @@ function display(){
   picTwoEl.src = products[index2].src;
   picThreeEl.src = products[index3].src;
 
-  //set titles
+  //set titles and alts
   picOneEl.title = products[index1].name;
   picTwoEl.title = products[index2].name;
   picThreeEl.title = products[index3].name;
 
+  picOneEl.alt = products[index1].name;
+  picTwoEl.alt = products[index2].name;
+  picThreeEl.alt = products[index3].name;
+
   products[index1].showCount++;
   products[index2].showCount++;
   products[index3].showCount++;
+
 }
 
 //US #2 Track selections made to determine most picked
 //handler function; update clicks; displays 3 new products
 function handleChoice(event){
-  var chosenProduct = event.target.name;
+  var chosenProduct = event.target.title;
   for (var i = 0; i < products.length; i++){
     if (chosenProduct === products[i].name){
       products[i].clickCount++;
@@ -92,31 +99,37 @@ function handleChoice(event){
   display();
 }
 
-//Attach event listener
-//User pics favorite with click, repeat to var votingRounds = #
 
-function setRounds(rounds){
-  for (var i = 0; i < rounds; i++){
-    sectionEl.addEventListener('click', handleChoice);
-  }
-  sectionEl.removeEventListener;
 
-  //show bus-mall-logo after rounds complete
+//US #3 max 25 rounds of voting then remove listener
+//display first 3 then start the event listener to start product display
+function start (){
   picOneEl.src = './assets/bus-mall-logo.png';
   picTwoEl.src = './assets/bus-mall-logo.png' ;
   picThreeEl.src = './assets/bus-mall-logo.png';
-  //invoke results report
+
+  sectionEl.addEventListener('click', handleChoice);
+  display();
 }
 
-//US #3 max 25 rounds of voting then remove listener
-//display first 3 then start and stop the event listener
-picOneEl.src = './assets/bus-mall-logo.png';
-picTwoEl.src = './assets/bus-mall-logo.png' ;
-picThreeEl.src = './assets/bus-mall-logo.png';
+function end (){
+  picOneEl.src = './assets/bus-mall-logo.png';
+  picTwoEl.src = './assets/bus-mall-logo.png' ;
+  picThreeEl.src = './assets/bus-mall-logo.png';
 
-setRounds(votingRounds);
-
-
+  sectionEl.removeEventListener('click', handleChoice);
+  results();
+}
 //US #4 view a report of results AFTER 25 votes
-
 //Display: productName, clickCount, showCount--in popular order--table?
+
+function results(){
+  //table maker
+  for (var i = 0; i < products.length; i++){
+    console.log (products[i].name + ' , ' + products[i].clickCount
+    + ' , ' + products[i].showCount);
+  }
+}
+
+///////// start the show//////
+start();

@@ -98,10 +98,6 @@ hr {
     }
 }
 
-
-
-
-
 #text-explain{
     text-align: center;
 }
@@ -133,6 +129,8 @@ h3 {
 }
 
 
+/* style results */
+
   footer {
       margin: 50px 0px 10px;
   }
@@ -140,3 +138,5 @@ h3 {
   footer p {
       padding: 20px 100px;
   }
+
+  /* add media queries */
