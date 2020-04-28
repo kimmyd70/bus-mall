@@ -2,7 +2,7 @@
 
 //Global Variables
 var products = [];
-var votingRounds = 5; //control how long user clicks to vote
+var votingRounds = 25; //control how long user clicks to vote
 
 //DOM links for display
 
