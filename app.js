@@ -4,13 +4,16 @@
 var products = [];
 var votingRounds = 5; //control how long user clicks to vote
 
-//DOM links
+//DOM links for display
 
 var picOneEl = document.getElementById ('product-pic-one');
 var picTwoEl = document.getElementById ('product-pic-two');
 var picThreeEl = document.getElementById ('product-pic-three');
 
 var sectionEl = document.getElementById('product-display');
+
+//DOM links for results display
+var resultsSection = document.getElementById('results');
 
 
 //US #1 Display 3 unique (random) products
@@ -85,8 +88,6 @@ function display(){
     products[index1].showCount++;
     products[index2].showCount++;
     products[index3].showCount++;
-
-
   }
   else {
     end();
@@ -110,6 +111,7 @@ function handleChoice(event){
 
 //US #3 max 25 rounds of voting then remove listener
 //display first 3 then start the event listener to start product display
+
 function start (){
   picOneEl.src = './assets/bus-mall-logo.png';
   picTwoEl.src = './assets/bus-mall-logo.png' ;
@@ -126,15 +128,20 @@ function end (){
   sectionEl.removeEventListener('click', handleChoice);
   results();
 }
+
 //US #4 view a report of results AFTER 25 votes
 //Display: productName, clickCount, showCount--in popular order--table?
 
 function results(){
-  //table maker
+  var result = '';
   for (var i = 0; i < products.length; i++){
-    console.log (products[i].name + ' , ' + products[i].clickCount
-    + ' , ' + products[i].showCount);
+    result = document.createElement('p');
+    result.textContent = `${i + 1} --  ${products[i].name} was clicked ${products[i].clickCount} 
+    times out of ${products[i].showCount} times shown.`;
+
+    resultsSection.appendChild(result);
   }
+
 }
 
 ///////// start the show//////
