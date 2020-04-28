@@ -4,27 +4,40 @@
 <link href = "./css/reset.css" type = "text/css" rel = "stylesheet"/>
 <link href = "./css/styles.css" type = "text/css" rel = "stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Montserrat&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://use.typekit.net/aer4iaz.css">
 
 <title> Bus Mall </title>
 </head>
 
 <body>
 <div class = "container">
+    <button id = "search-button"> Search <img src = "./assets/search-icon.png" class = "icon"></button>
+    <img src ="./assets/bus-mall-logo.png" id = "logo">
     <header>
-    <h1>Welcome to Bus Mall</h1> 
-
+        <p><h1>Welcome to Bus Mall</h1> </p>
+        
     </header>
+    
+    <hr>
 
     <main>
-        <section id = "product-display">
-
-
+        <section>
+            <p id = "product-display">  
+                <img src = " "  alt = " " title = " " class = "small" id = "product-pic-one">
+                <img src = " " alt = " " title = " " class = "small" id = "product-pic-two">
+                <img src = " " alt = " " title = " " class = "small" id = "product-pic-three">
+                
+            </p>
         </section>
 
-        <secion id = "text-explain">
-            <p>Lorem Ipsum some stuff about results below</p>
-        </secion>
+        <section id = "text-explain">
+
+            <h3>As products appear, please select your favorite of the three.  <br>Results will appear below
+                after your session is complete. <br><h4>Please click on any to start</h4>
+            </h3>
+            <hr>
+        </section>
+
 
         <section id = "results">
             <table>
@@ -40,8 +53,16 @@
 
     </main>
 
-    <footer>
+    <script src="./app.js"></script>
 
+    <footer>
+        <hr>
+        <hr>
+        <p>
+            &copy @kimmyd70,  2020
+        </p>
+        <hr>
+        <hr>
     </footer>
 </body>
 </div>
