@@ -1,5 +1,38 @@
 # bus-mall
 
+## update for lab 12:
+
+1.  As a marketeer, I want to prevent users from seeing the same image in two subsequent iterations, so that they are not biased.
+
+Update your algorithm to randomly generate three unique product images from the images directory.**(done in lab 11)**
+
+Update your algorithm so that new products are generated, confirm that these products are not duplicates from the immediate previous set. **(lab 12 new)**
+
+2.  As a user, I would like to track how many times a product has appeared in a voting session, so that I can track analytics on each piece of data.
+
+Add an additional property to your constructor function that tracks the number of times the product has been shown. **(done in lab 11)**
+
+Update this new property every time the product is shown as one of the three options on the screen for the viewer to choose.**(done in lab11)**
+
+3.  As a marketing manager, I would like a visual representation of how many times a product was clicked so that I can visually analyze the results.**(new for lab12)**
+
+Using ChartJS (imported from CDN), display the vote totals and the number of times a product was viewed in a bar chart format. (hint: don’t forget about the `<canvas>` tags)
+
+Place the bar chart in the section located beneath your three product images
+
+The bar charts should only appear after all voting data has been collected.
+__________
+
+Stretch Goals
+Try some additional charting types based off of some of the other data you collected and display them in addition to the required bar chart
+____________
+Developer Style Guide
+Do today’s work on a branch called `chartjs`.
+
+## update after lab-11:
+
+- all 3 user stories completed 
+
 ## Problem Domain
 You’ve been hired by a startup called BusMall, whose product is similar to the SkyMall catalog found in the seatback pockets on airplanes: a catalog of assorted high-markup products provided to a captive audience seeking a mental escape from the drudgery of travel. The difference with BusMall is that instead of their catalog being placed in airplanes, they are placed on local busses while commuting through traffic.
 
