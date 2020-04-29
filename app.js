@@ -2,7 +2,7 @@
 
 //Global Variables
 var products = [];
-var votingRounds = 25; //control how long user clicks to vote
+var votingRounds = 5; //control how long user clicks to vote
 
 //DOM links for display
 
@@ -63,13 +63,27 @@ function randomIndex (max){
 // ...and show 3 products (no doubles) side by side; update show Count
 // repeat for global var votingRounds = # times
 
+//new US: no showing same thing in 2 subsequent rounds
+
 function display(){
+  var chosenArr = [];
   if (votingRounds > 0){
     while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
       var index1 = randomIndex(products.length);
       var index2 = randomIndex(products.length);
       var index3 = randomIndex(products.length);
+
+      for (var i = 0; i < chosenArr.length; i++){
+        if ((chosenArr[i] === index1) || (chosenArr[i] === index2)
+        || (chosenArr[i] === index3)){
+          chosenArr [i] = randomIndex(products.length);
+        }
+      }
     }
+    chosenArr.push (index1);
+    chosenArr.push (index2);
+    chosenArr.push (index3);
+
 
     //set images to be displayed
     picOneEl.src = products[index1].src;
@@ -126,22 +140,28 @@ function end (){
   picThreeEl.src = './assets/bus-mall-logo.png';
 
   sectionEl.removeEventListener('click', handleChoice);
-  results();
+  // chart();
 }
 
 //US #4 view a report of results AFTER 25 votes
 //Display: productName, clickCount, showCount--in popular order--table?
 
-function results(){
-  var result = '';
-  for (var i = 0; i < products.length; i++){
-    result = document.createElement('p');
-    result.textContent = `${i + 1} --  ${products[i].name} was clicked ${products[i].clickCount} 
-    times out of ${products[i].showCount} times shown.`;
+// function results(){
+//   var result = '';
+//   for (var i = 0; i < products.length; i++){
+//     result = document.createElement('p');
+//     result.textContent = `${i + 1} --  ${products[i].name} was clicked ${products[i].clickCount} 
+//     times out of ${products[i].showCount} times shown.`;
 
-    resultsSection.appendChild(result);
-  }
+//     resultsSection.appendChild(result);
+//   }
 
+// }
+
+//New US: view a bar chart of shown and clicked for each item AFTER voting complete
+
+function chart(){
+  // show chart
 }
 
 ///////// start the show//////
