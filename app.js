@@ -11,9 +11,9 @@ var picThreeEl = document.getElementById ('product-pic-three');
 
 var sectionEl = document.getElementById('product-display');
 
-//DOM links for results display
-var resultsSection = document.getElementById('results');
 
+//old link for sentence output
+//var resultsSection = document.getElementById('results');
 
 //US #1 Display 3 unique (random) products
 //Create constructor properties: product-name, image file path
@@ -106,6 +106,13 @@ function display(){
       duplicate = chosenArr.includes(index3); //re-eval index3
     }
 
+    //Final check to see if deconflicted indices have been set to duplicate in this round
+    while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
+      index1 = randomIndex(products.length);
+      index2 = randomIndex(products.length);
+      index3 = randomIndex(products.length);
+    }
+
     //set chosenArr values for this round
     chosenArr[0] = index1; //set unique index1 in cache
     chosenArr[1] = index2; //set unique index 2 in cache
@@ -166,17 +173,21 @@ function end (){
   picThreeEl.src = './assets/bus-mall-logo.png';
 
   sectionEl.removeEventListener('click', handleChoice);
-  chart();
+  renderChart();
+
+  //previous user story with sentence outputs
+  //results();
 }
 
 //US #4 view a report of results AFTER 25 votes
-//Display: productName, clickCount, showCount--in popular order--table?
+//Display: productName, clickCount, showCount in sentence
 
 // function results(){
 //   var result = '';
 //   for (var i = 0; i < products.length; i++){
 //     result = document.createElement('p');
-//     result.textContent = `${i + 1} --  ${products[i].name} was clicked ${products[i].clickCount} 
+//     result.textContent = `${i + 1} --  ${products[i].name}
+//     was clicked ${products[i].clickCount}
 //     times out of ${products[i].showCount} times shown.`;
 
 //     resultsSection.appendChild(result);
@@ -185,10 +196,123 @@ function end (){
 // }
 
 //New US: view a bar chart of shown and clicked for each item AFTER voting complete
+function chartData(){
+  //seed data
+  var clicked =[];
+  var shown = [];
+  var labels = [];
+  for (var i = 0; i < products.length; i++){
+    clicked.push(products[i].clickCount);
+    shown.push(products[i].showCount);
+    labels.push(products[i].name);
+  }
+  return[clicked,shown,labels];
+}
 
-function chart(){
+function renderChart(){
   // show chart
-  console.log('chart goes here');
+  var ctx = document.getElementById('resultsChart').getContext('2d');
+  var resultsChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+      labels: chartData()[2],
+      datasets: [{
+        label: '# of Votes',
+        data: chartData()[0],
+        backgroundColor: [
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+
+        ],
+        borderColor: [
+        ],
+        borderWidth: 1,
+        barPercentage: 1.0
+
+      },
+      {
+        label: '# of Times Shown',
+        data: chartData()[1],
+        backgroundColor: [
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+          'whitesmoke',
+
+        ],
+        borderColor: [
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+          '#005810',
+
+        ],
+        borderWidth: 1,
+        barPercentage: 1.0
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 25,
+            stepSize: 1.0,
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
 
 }
 

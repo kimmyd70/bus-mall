@@ -129,13 +129,20 @@ h3 {
 }
 
 
-#results{
+/* #results{
     font-family: 'Montserrat', sans-serif;
     font-size: 14px;
     font-weight: 600;
     color: #005810;
     margin: 60px 0px 30px 150px;
     line-height: 2;
+} */
+
+#results{
+    font-family: 'Montserrat', sans-serif;
+    margin: 50px;
+    text-align: center;
+    
 }
 
   footer {
