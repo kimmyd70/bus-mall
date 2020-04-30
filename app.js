@@ -2,8 +2,7 @@
 
 //Global Variables
 var products = [];
-var votingRounds = 5; //control how long user clicks to vote
-
+var votingRounds = 25; //control how long user clicks to vote
 //DOM links for display
 
 var picOneEl = document.getElementById ('product-pic-one');
@@ -63,27 +62,54 @@ function randomIndex (max){
 // ...and show 3 products (no doubles) side by side; update show Count
 // repeat for global var votingRounds = # times
 
-//new US: no showing same thing in 2 subsequent rounds
+//new US: no showing same thing in 2 subsequent rounds before display
+
+//set cache
+var chosenArr = [];
 
 function display(){
-  var chosenArr = [];
   if (votingRounds > 0){
+
+    //pick initial numbers
+    var index1 = randomIndex(products.length);
+    var index2 = randomIndex(products.length);
+    var index3 = randomIndex(products.length);
+
+    //check for duplicate in same round
     while ((index1 === index2) || (index1 === index3) || (index2 === index3)){
-      var index1 = randomIndex(products.length);
-      var index2 = randomIndex(products.length);
-      var index3 = randomIndex(products.length);
-
-      for (var i = 0; i < chosenArr.length; i++){
-        if ((chosenArr[i] === index1) || (chosenArr[i] === index2)
-        || (chosenArr[i] === index3)){
-          chosenArr [i] = randomIndex(products.length);
-        }
-      }
+      index1 = randomIndex(products.length);
+      index2 = randomIndex(products.length);
+      index3 = randomIndex(products.length);
     }
-    chosenArr.push (index1);
-    chosenArr.push (index2);
-    chosenArr.push (index3);
 
+    //now that we have 3 unique in this round
+    //check and replace if any of index 1,2,3 are already in chosenArr
+
+    var duplicate = chosenArr.includes(index1); //declare and check index1
+
+    while (duplicate === true){
+      index1 = randomIndex(products.length); //pick a new number
+      duplicate = chosenArr.includes(index1); //re-eval index1
+    }
+
+    duplicate = chosenArr.includes(index2); //check index2
+
+    while (duplicate === true){
+      index2 = randomIndex(products.length); //pick new number
+      duplicate = chosenArr.includes(index2); //re-evaluate index2
+    }
+
+    duplicate = chosenArr.includes(index3); //check index3
+
+    while (duplicate === true){
+      index3 = randomIndex(products.length); //pick new number
+      duplicate = chosenArr.includes(index3); //re-eval index3
+    }
+
+    //set chosenArr values for this round
+    chosenArr[0] = index1; //set unique index1 in cache
+    chosenArr[1] = index2; //set unique index 2 in cache
+    chosenArr[2] = index3;// set unique index3 in cache
 
     //set images to be displayed
     picOneEl.src = products[index1].src;
@@ -140,7 +166,7 @@ function end (){
   picThreeEl.src = './assets/bus-mall-logo.png';
 
   sectionEl.removeEventListener('click', handleChoice);
-  // chart();
+  chart();
 }
 
 //US #4 view a report of results AFTER 25 votes
@@ -162,6 +188,8 @@ function end (){
 
 function chart(){
   // show chart
+  console.log('chart goes here');
+
 }
 
 ///////// start the show//////
