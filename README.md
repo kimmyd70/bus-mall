@@ -1,5 +1,15 @@
 # bus-mall
 
+## update for lab 13:
+1.  As a user, I would like my data to persistently track totals between page refreshes, so that I can keep track of the aggregate number of votes.
+
+Implement local storage into your current application
+Make sure the data persists across both browser refreshes and resets
+Hints:
+
+Store the products array into local storage as a formatted JSON string
+Retrieve the products array from local storage and then utilize the JSON.Parse() function. Remember, you will have to send each item in the array back through constructor function.
+
 ## update for lab 12:
 
 1.  As a marketeer, I want to prevent users from seeing the same image in two subsequent iterations, so that they are not biased.
